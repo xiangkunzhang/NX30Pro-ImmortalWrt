@@ -17,8 +17,8 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x.git
+  REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -77,6 +77,10 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        
+    # -------- 这是您需要新加的 SSH 步骤 --------
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@main
 
     - name: Download package
       id: package
